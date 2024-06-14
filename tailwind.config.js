@@ -1,12 +1,10 @@
-import { colors } from '@switchdreams/ui'
-import switchUiPlugin from '@switchdreams/ui/dist/tailwind.plugin'
+import { colors } from "@switchdreams/ui";
+import switchUiPlugin from "@switchdreams/ui/dist/tailwind.plugin";
 
 import defaultColors from "./app/frontend/constants/colors";
 
 module.exports = {
-  content: [
-    './node_modules/@switchdreams/ui/dist/**/*.js'
-  ],
+  content: ["./node_modules/@switchdreams/ui/dist/**/*.js"],
   theme: {
     extend: {
       curvature: {
@@ -73,12 +71,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        default: ['Poppins', 'sans-serif'], //.. Opcional
+        default: ["Poppins", "sans-serif"], //.. Opcional
       },
     },
   },
-  plugins: [
-    switchUiPlugin,
-  ],
-
-}
+  plugins: [switchUiPlugin],
+};

@@ -1,12 +1,12 @@
+import { createInertiaApp } from "@inertiajs/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { createInertiaApp } from "@inertiajs/react";
 
 createInertiaApp({
   resolve: async (name) => {
     const pages = import.meta.glob(
-        ["../pages/**/*.jsx", "!../pages/**/*.test.jsx", "!../pages/**/*.stories.jsx"],
-        { eager: true },
+      ["../pages/**/*.jsx", "!../pages/**/*.test.jsx", "!../pages/**/*.stories.jsx"],
+      { eager: true },
     );
     let page = pages[`../pages/${name}.jsx`];
     return page;
@@ -17,4 +17,3 @@ createInertiaApp({
     root.render(<App {...props} />);
   },
 });
-
