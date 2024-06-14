@@ -4,8 +4,11 @@ import { createInertiaApp } from "@inertiajs/react";
 
 createInertiaApp({
   resolve: async (name) => {
-    const pages = import.meta.glob("../pages/**/*.tsx", { eager: true });
-    let page = pages[`../pages/${name}.tsx`];
+    const pages = import.meta.glob(
+        ["../pages/**/*.jsx", "!../pages/**/*.test.jsx", "!../pages/**/*.stories.jsx"],
+        { eager: true },
+    );
+    let page = pages[`../pages/${name}.jsx`];
     return page;
   },
   setup({ el, App, props }) {

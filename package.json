@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@inertiajs/react": "^1.2.0",
+    "@switchdreams/ui": "^1.0.2",
     "@vitejs/plugin-react": "^4.3.1",
     "inertiajs": "^0.0.0",
     "react": "^18.3.1",
