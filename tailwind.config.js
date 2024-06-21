@@ -4,7 +4,11 @@ import switchUiPlugin from "@switchdreams/ui/dist/tailwind.plugin";
 import defaultColors from "./app/frontend/constants/colors";
 
 module.exports = {
-  content: ["./node_modules/@switchdreams/ui/dist/**/*.js"],
+  content: [
+    "app/**/*.html.erb",
+    "app/frontend/**/*.jsx",
+    "./node_modules/@switchdreams/ui/dist/**/*.js",
+  ],
   theme: {
     extend: {
       curvature: {
