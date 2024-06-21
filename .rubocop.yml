@@ -1,2 +1,2 @@
-# Switch Ruby styling for Rails
-inherit_gem: { switchcop: rubocop.yml }
+inherit_gem:
+  switchcop: rubocop.yml
