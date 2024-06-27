@@ -1,0 +1,28 @@
+# config/locales/avo.pt-BR.yml
+pt-BR:
+  avo:
+    resource_translations:
+      user:
+        zero: 'usuários'
+        one: 'usuário'
+        other: 'usuários'
+      address:
+        zero: 'endereços'
+        one: 'endereço'
+        other: 'endereços'
+      work_area:
+        zero: 'conselhos regionais'
+        one: 'conselho regional'
+        other: 'conselhos regionais'
+      work_specialty:
+        zero: 'especialidades'
+        one: 'especialidade'
+        other: 'especialidades'
+      contacting_user:
+        zero: 'contatos de usuários'
+        one: 'contato de usuário'
+        other: 'contatos de usuários'
+      doctor:
+        zero: 'profissionais da saúde'
+        one: 'profissional da saúde'
+        other: 'profissionais da saúde'
