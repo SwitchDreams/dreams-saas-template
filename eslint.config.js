@@ -3,6 +3,7 @@ const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommen
 const simpleImportSort = require("eslint-plugin-simple-import-sort");
 const reactRecommended = require("eslint-plugin-react/configs/recommended");
 const pluginTailwindcss = require("eslint-plugin-tailwindcss");
+const eslintConfigPrettier = require("eslint-config-prettier");
 
 module.exports = [
   {
@@ -42,4 +43,5 @@ module.exports = [
     },
   },
   eslintPluginPrettierRecommended,
+  eslintConfigPrettier,
 ];
