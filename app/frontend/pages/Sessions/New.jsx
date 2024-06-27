@@ -1,5 +1,5 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { Button, Text, TextField } from "@switchdreams/ui";
 import React, { useContext, useState } from "react";
 
@@ -57,7 +57,7 @@ const SessionNew = () => {
                 onChange={(e) => setData("password", e.target.value)}
                 onClickIcon={showPasswordIcon}
               />
-              <a href="/identity/password_resets/step_one">
+              <Link href="/identity/password_resets/step_one">
                 <Text
                   size="sm"
                   as="p"
@@ -65,8 +65,8 @@ const SessionNew = () => {
                 >
                   Esqueceu sua senha?
                 </Text>
-              </a>
-              <Button className="mt-6 rounded-sm" label="Entrar" size="lg" />
+              </Link>
+              <Button className="mt-6 rounded-sm" variant="primary" label="Entrar" size="lg" />
             </form>
             <Text size="sm" className="cursor-pointer pt-6 text-center text-gray-600">
               Não possui uma conta?
@@ -75,7 +75,7 @@ const SessionNew = () => {
               href="https://wa.me/5561999018871?text=Quero%20me%20cadastrar%20no%20SitesNaHora"
               target="_blank"
               rel="noreferrer"
-              className="text-primary-400 cursor-pointer pt-2.5 text-center text-sm"
+              className="cursor-pointer pt-2.5 text-center text-sm text-primary-400"
             >
               Entre em contato com nosso comercial
             </a>

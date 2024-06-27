@@ -6,7 +6,7 @@ import React from "react";
 const StepFour = () => {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center pb-56 pt-10">
-      <div className="mb-14 flex h-4/5 w-full flex-col items-center justify-center px-6 md:w-1/3 md:p-0 ">
+      <div className="mb-14 flex h-4/5 w-full flex-col items-center justify-center px-6 md:w-1/3 md:p-0">
         <div className="flex size-20 items-center justify-center rounded-full border border-primary-50">
           <CheckIcon className="w-10 stroke-2 text-primary-500" />
         </div>

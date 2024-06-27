@@ -36,5 +36,10 @@ module.exports = [
     },
   },
   reactRecommended,
+  {
+    rules: {
+      "react/prop-types": "off",
+    },
+  },
   eslintPluginPrettierRecommended,
 ];
