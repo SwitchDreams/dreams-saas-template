@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount Avo::Engine, at: Avo.configuration.root_path
+  mount GoodJob::Engine => "good_job", constraints: AdminConstraint.new
+
   # Authentication
-  get "sign_in", to: "sessions#new"
+  get "sign_in", to: "sessions#new", as: :login
   post "sign_in", to: "sessions#create"
+  delete "sign_out", to: "sessions#destroy", as: :logout
 
   resources :sessions, only: [:index, :show, :destroy]
 
@@ -28,7 +32,5 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-  root "application#home"
+  root "home#index"
 end

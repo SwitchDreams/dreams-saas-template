@@ -10,6 +10,8 @@ class User < ApplicationRecord
     password_salt.last(10)
   end
 
+  enum :role, { super_admin: 0, normal: 1 }
+
   has_many :sessions, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }

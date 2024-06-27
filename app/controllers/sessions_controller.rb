@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       @session = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
 
-      redirect_to projects_path
+      redirect_to logged_path(user)
     else
       redirect_to sign_in_path, inertia: { errors: "Credenciais Inválidas" }
     end
@@ -29,6 +29,14 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def logged_path(user)
+    if user.super_admin?
+      "/avo"
+    else
+      "/projects"
+    end
+  end
 
   def set_session
     @session = Current.session
