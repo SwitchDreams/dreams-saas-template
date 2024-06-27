@@ -31,6 +31,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "switchcop"
   gem "simplecov"
+  gem "faker"
 end
 
 group :development do

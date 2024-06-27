@@ -8,16 +8,14 @@ Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwin
 - Configure as variáveis de ambientes necessárias
 - Rode o projeto com o comando `./bin/dev`
 
-
 ## Configuração
 
 ### Biblioteca de componentes
 
-
-
 ### Configurando Logo
 
 Alguns assets de arquivos são utilizados durante as telas do nosso template, recomendo trocá-los:
+
 - Logo principal (public/images/logo.svg)
 - Imagem de fundo do background (public/images/back-login.png)
 
@@ -32,6 +30,15 @@ Utilizamos a gem "authentication-zero", temos os seguintes módulos:
 
 - Autenticação
 - Reset de Senhas
+
+#### Roles
+
+- No template temos duas roles:
+    - super_admin: que tem acesso no AVO
+    - normal: sem definição de acesso
+
+Essas roles inicialmente só tem a função de limitar o acesso no AVO, com certeza sua aplicação vai necessitar de mais
+roles e edite isso no arquivo `user.rb`
 
 ### Background Jobs
 

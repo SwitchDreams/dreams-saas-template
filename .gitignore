@@ -46,3 +46,5 @@ node_modules
 
 # Figaro
 /config/application.yml
+
+coverage
