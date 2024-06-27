@@ -1,43 +1,72 @@
 class Identity::PasswordResetsController < ApplicationController
   skip_before_action :authenticate
 
-  before_action :set_user, only: %i[ edit update ]
-
-  def new
+  def step_one
+    render inertia: "Identity/PasswordResets/StepOne"
   end
 
-  def edit
-  end
-
+  # Second Step - Use the code in email
   def create
-    if @user = User.find_by(email: params[:email], verified: true)
-      send_password_reset_email
-      redirect_to sign_in_path, notice: "Check your email for reset instructions"
+    @user = User.find_by!(email: params[:email])
+    send_reset_password_instructions
+
+    @signed_id = @user.password_reset_tokens.last.signed_id(expires_in: 20.minutes)
+
+    redirect_to identity_password_resets_step_two_path(sid: @signed_id)
+  rescue
+    redirect_to identity_password_resets_step_one_path,
+                inertia: { errors: "Ocorreu um erro: não foi possível encontrar usuário com o email: #{params[:email]}" }
+  end
+
+  def step_two
+    if params[:sid]
+      render inertia: "Identity/PasswordResets/StepTwo", props: { sid: params[:sid] }
     else
-      redirect_to new_identity_password_reset_path, alert: "You can't reset your password until you verify your email"
+      redirect_to identity_password_resets_step_one_path
     end
   end
 
-  def update
-    if @user.update(user_params)
-      redirect_to sign_in_path, notice: "Your password was reset successfully. Please sign in"
+  # Third Step - Edit password
+  def check_code
+    token = PasswordResetToken.find_signed!(params[:sid])
+    if token.code == params[:code].to_i
+      redirect_to identity_password_resets_step_three_path(sid: params[:sid], code: params[:code])
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to identity_password_resets_step_two_path(sid: params[:sid]), inertia: { errors: "O código fornecido está errado" }
     end
+  rescue => e
+    redirect_to identity_password_resets_step_two_path(sid: params[:sid]), inertia: { errors: "Ocorreu um erro: #{e}" }
+  end
+
+  def step_three
+    if params[:sid] && params[:code]
+      render inertia: "Identity/PasswordResets/StepThree", props: { sid: params[:sid], code: params[:code] }
+    else
+      redirect_to identity_password_resets_step_two_path(sid: params[:sid])
+    end
+  end
+
+  # Fourth Step - Update password
+  def update
+    token = PasswordResetToken.find_signed!(params[:sid])
+    if token.code == params[:code].to_i
+      token.user.update!(password: params[:password])
+      redirect_to identity_password_resets_step_four_path
+    else
+      redirect_to identity_password_resets_step_two_path(sid: params[:sid], code: params[:code])
+    end
+  rescue => e
+    redirect_to identity_password_resets_step_three_path(sid: params[:sid], code: params[:code]),
+                inertia: { errors: "Ocorreu um erro: #{e}" }
+  end
+
+  def step_four
+    render inertia: "Identity/PasswordResets/StepFour"
   end
 
   private
-    def set_user
-      @user = User.find_by_token_for!(:password_reset, params[:sid])
-    rescue StandardError
-      redirect_to new_identity_password_reset_path, alert: "That password reset link is invalid"
-    end
 
-    def user_params
-      params.permit(:password, :password_confirmation)
-    end
-
-    def send_password_reset_email
-      UserMailer.with(user: @user).password_reset.deliver_later
-    end
+  def send_reset_password_instructions
+    UserMailer.with(user: @user).password_reset.deliver_now
+  end
 end

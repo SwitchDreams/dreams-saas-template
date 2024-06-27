@@ -6,6 +6,19 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
 
   resources :sessions, only: [:index, :show, :destroy]
+
+  # Password Reset
+  namespace :identity do
+    get "password_resets/step_one", to: "password_resets#step_one"
+    post "password_resets", to: "password_resets#create"
+    get "password_resets/step_two", to: "password_resets#step_two"
+    post "password_resets/check_code", to: "password_resets#check_code"
+    get "password_resets/step_three", to: "password_resets#step_three"
+    patch "password_resets", to: "password_resets#update"
+    get "password_resets/step_four", to: "password_resets#step_four"
+  end
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

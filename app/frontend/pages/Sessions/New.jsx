@@ -57,7 +57,7 @@ const SessionNew = () => {
                 onChange={(e) => setData("password", e.target.value)}
                 onClickIcon={showPasswordIcon}
               />
-              <a href="/password/step_one">
+              <a href="/identity/password_resets/step_one">
                 <Text
                   size="sm"
                   as="p"
