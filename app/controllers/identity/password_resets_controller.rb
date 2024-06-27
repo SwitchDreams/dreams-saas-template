@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Identity::PasswordResetsController < ApplicationController
   skip_before_action :authenticate
 
@@ -15,7 +17,7 @@ class Identity::PasswordResetsController < ApplicationController
     redirect_to identity_password_resets_step_two_path(sid: @signed_id)
   rescue
     redirect_to identity_password_resets_step_one_path,
-                inertia: { errors: "Ocorreu um erro: não foi possível encontrar usuário com o email: #{params[:email]}" }
+      inertia: { errors: "Ocorreu um erro: não foi possível encontrar usuário com o email: #{params[:email]}" }
   end
 
   def step_two
@@ -32,7 +34,8 @@ class Identity::PasswordResetsController < ApplicationController
     if token.code == params[:code].to_i
       redirect_to identity_password_resets_step_three_path(sid: params[:sid], code: params[:code])
     else
-      redirect_to identity_password_resets_step_two_path(sid: params[:sid]), inertia: { errors: "O código fornecido está errado" }
+      redirect_to identity_password_resets_step_two_path(sid: params[:sid]),
+        inertia: { errors: "O código fornecido está errado" }
     end
   rescue => e
     redirect_to identity_password_resets_step_two_path(sid: params[:sid]), inertia: { errors: "Ocorreu um erro: #{e}" }
@@ -57,7 +60,7 @@ class Identity::PasswordResetsController < ApplicationController
     end
   rescue => e
     redirect_to identity_password_resets_step_three_path(sid: params[:sid], code: params[:code]),
-                inertia: { errors: "Ocorreu um erro: #{e}" }
+      inertia: { errors: "Ocorreu um erro: #{e}" }
   end
 
   def step_four

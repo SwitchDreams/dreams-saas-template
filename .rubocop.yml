@@ -1,2 +1,6 @@
 inherit_gem:
   switchcop: rubocop.yml
+
+
+Rails/I18nLocaleTexts:
+  Enabled: false
