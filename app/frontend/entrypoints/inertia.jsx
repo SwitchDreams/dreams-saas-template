@@ -1,6 +1,7 @@
 import { createInertiaApp } from "@inertiajs/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 createInertiaApp({
   resolve: async (name) => {
@@ -9,6 +10,8 @@ createInertiaApp({
       { eager: true },
     );
     let page = pages[`../pages/${name}.jsx`];
+
+    page.default.layout = (page) => <DefaultLayout>{page}</DefaultLayout>;
     return page;
   },
   setup({ el, App, props }) {
