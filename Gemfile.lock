@@ -182,7 +182,12 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
+    oj (3.16.4)
+      bigdecimal (>= 3.0)
     pagy (8.6.0)
+    panko_serializer (0.8.1)
+      activesupport
+      oj (> 3.11.0, < 4.0.0)
     parallel (1.25.1)
     parser (3.3.3.0)
       ast (~> 2.4.1)
@@ -380,6 +385,7 @@ DEPENDENCIES
   factory_bot_rails
   figaro
   inertia_rails
+  panko_serializer
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

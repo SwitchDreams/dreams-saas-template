@@ -2,7 +2,17 @@ class ApplicationController < ActionController::Base
   before_action :set_current_request_details
   before_action :authenticate
 
+  inertia_share currentUser: -> { Current.user ? serialize(Current.user, CurrentUserSerializer) : nil }
+
   private
+
+  def serialize(resource, serializer_class)
+    if resource.respond_to?(:length)
+      Panko::ArraySerializer.new(resource, each_serializer: serializer_class).to_a
+    else
+      serializer_class.new.serialize(resource)
+    end
+  end
 
   def authenticate
     if session_record = Session.find_by_id(cookies.signed[:session_token])

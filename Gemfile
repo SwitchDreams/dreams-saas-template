@@ -56,10 +56,11 @@ gem "avo"
 # Simple Rails app configuration
 gem "figaro"
 
+#  High Performance JSON Serialization for ActiveRecord & Ruby Objects
+gem "panko_serializer"
+
 # Authorization framework for Ruby/Rails applications.
 gem "action_policy"
 
 # Thruster is an HTTP/2 proxy for simple production-ready deployments of Rails applications.
 gem "thruster"
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
