@@ -3,7 +3,6 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.3
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
-ARG GH_PACKAGE_TOKEN
 ARG RAILS_ENV='production'
 
 # Rails app lives here
@@ -14,9 +13,6 @@ ENV RAILS_ENV=$RAILS_ENV \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development:test"
-
-# Setup GH_PACKAGE_TOKEN
-RUN echo "//npm.pkg.github.com/:_authToken=${GH_PACKAGE_TOKEN}" > ~/.npmrc
 
 # Node Setup to install correct version of node
 RUN apt-get update -qq && \
