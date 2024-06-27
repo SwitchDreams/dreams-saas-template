@@ -43,3 +43,6 @@ node_modules
 
 # Ignore IntelliJ IDE file
 .idea
+
+# Figaro
+/config/application.yml

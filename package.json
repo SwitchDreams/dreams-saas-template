@@ -3,16 +3,8 @@
     "test": "vitest",
     "lint": "eslint 'app/frontend/**/*.{js,jsx,ts,tsx}'"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "jsdom": "^24.1.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4",
-    "vite": "^5.3.1",
-    "vite-plugin-rails": "^0.5.0",
-    "vite-plugin-ruby": "^5.0.0"
-  },
   "dependencies": {
+    "@heroicons/react": "^2.1.4",
     "@inertiajs/react": "^1.2.0",
     "@switchdreams/ui": "^1.0.2",
     "@testing-library/dom": "^10.1.0",
@@ -32,6 +24,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vitest": "^1.6.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "jsdom": "^24.1.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1",
+    "vite-plugin-rails": "^0.5.0",
+    "vite-plugin-ruby": "^5.0.0"
   },
   "resolutions": {
     "strip-ansi": "6.0.1"
