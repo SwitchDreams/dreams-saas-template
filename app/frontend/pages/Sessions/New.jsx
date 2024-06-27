@@ -31,12 +31,12 @@ const SessionNew = () => {
       <div className="flex h-screen w-screen justify-center">
         <div className="relative flex h-full w-screen items-center justify-center md:w-1/2">
           <div className="flex h-4/5 w-full flex-col justify-center px-6 md:w-auto md:p-0">
-            <img className="h-[43px] w-[170px]" src={imagePath("Logo.svg")} alt="logo" />
+            <img className="h-[43px] w-[170px]" src={imagePath("logo.svg")} alt="logo" />
             <Text size="sm" as="h2" className="m-0 pt-5 text-gray-600 md:pt-10">
               SEJA BEM-VINDO DE VOLTA
             </Text>
             <Text size="3xl" as="h1" className="m-0 pb-14 pt-4 text-3xl text-gray-950">
-              Entre na sua conta SitesNaHora
+              Entre na sua conta Dream SaaS Template
             </Text>
             <form onSubmit={submitLoginData}>
               <TextField
@@ -75,7 +75,7 @@ const SessionNew = () => {
               href="https://wa.me/5561999018871?text=Quero%20me%20cadastrar%20no%20SitesNaHora"
               target="_blank"
               rel="noreferrer"
-              className="text-primaryUi-400 cursor-pointer pt-2.5 text-center text-sm"
+              className="text-primary-400 cursor-pointer pt-2.5 text-center text-sm"
             >
               Entre em contato com nosso comercial
             </a>
@@ -83,7 +83,7 @@ const SessionNew = () => {
         </div>
         <img
           className="hidden h-full w-1/2 object-cover md:block"
-          src={imagePath("backgroundlogin.png")}
+          src={imagePath("background-login.png")}
           alt="living_room"
         />
       </div>
