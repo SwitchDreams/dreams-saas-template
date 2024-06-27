@@ -64,3 +64,6 @@ gem "action_policy"
 
 # Thruster is an HTTP/2 proxy for simple production-ready deployments of Rails applications.
 gem "thruster"
+
+# Multithreaded, Postgres-based, Active Job backend for Ruby on Rails.
+gem "good_job"
