@@ -14,6 +14,15 @@ module.exports = {
       colors: {
         ...colors,
         ...defaultColors,
+        btn: {
+          primary: {
+            bg: defaultColors.primary["300"],
+            hover: defaultColors.primary["400"],
+            active: defaultColors.primary["500"],
+            focus: defaultColors.primary["300"],
+            text: defaultColors.gray["white"],
+          },
+        },
       },
       fontFamily: {
         default: ["Poppins", "sans-serif"], //.. Opcional
