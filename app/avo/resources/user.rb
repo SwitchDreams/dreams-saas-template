@@ -6,8 +6,8 @@ class Avo::Resources::User < Avo::BaseResource
   def fields
     field :id, as: :id
     field :email, as: :text
+    field :name, as: :text
     field :verified, as: :boolean
     field :role, as: :select, enum: ::User.roles
-    field :sessions, as: :has_many
   end
 end
