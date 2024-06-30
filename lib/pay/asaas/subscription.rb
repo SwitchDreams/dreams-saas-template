@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 module Pay
   module Asaas
     class Subscription
       attr_reader :pay_subscription
 
       delegate :active?,
-               :canceled?,
-               :on_grace_period?,
-               :on_trial?,
-               :ends_at,
-               :ends_at?,
-               :owner,
-               :processor_subscription,
-               :processor_id,
-               :prorate,
-               :processor_plan,
-               :quantity?,
-               :quantity,
-               to: :pay_subscription
+        :canceled?,
+        :on_grace_period?,
+        :on_trial?,
+        :ends_at,
+        :ends_at?,
+        :owner,
+        :processor_subscription,
+        :processor_id,
+        :prorate,
+        :processor_plan,
+        :quantity?,
+        :quantity,
+        to: :pay_subscription
 
       def initialize(pay_subscription)
         @pay_subscription = pay_subscription
@@ -45,7 +47,7 @@ module Pay
         pay_subscription.update(
           status: :canceled,
           trial_ends_at: (ends_at if pay_subscription.trial_ends_at?),
-          ends_at: ends_at
+          ends_at: ends_at,
         )
       end
 

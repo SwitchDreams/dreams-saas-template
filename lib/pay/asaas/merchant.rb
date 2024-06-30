@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module Pay
   module Asaas
     class Merchant
       attr_reader :pay_merchant
+
       delegate :processor_id, to: :pay_merchant
 
       def initialize(pay_merchant)

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module Pay
   module Asaas
     class Billable
       attr_reader :pay_customer
 
       delegate :processor_id,
-               :processor_id?,
-               :email,
-               :customer_name,
-               :card_token,
-               to: :pay_customer
+        :processor_id?,
+        :email,
+        :customer_name,
+        :card_token,
+        to: :pay_customer
 
       def initialize(pay_customer)
         @pay_customer = pay_customer
@@ -36,9 +38,9 @@ module Pay
             payment_method_type: :card,
             brand: "Fake",
             last4: 1234,
-            exp_month: Date.today.month,
-            exp_year: Date.today.year
-          }
+            exp_month: Time.zone.today.month,
+            exp_year: Time.zone.today.year,
+          },
         }.deep_merge(valid_attributes)
         pay_customer.charges.create!(attributes)
       end
@@ -51,7 +53,7 @@ module Pay
           name: name,
           processor_plan: plan,
           status: :active,
-          quantity: options.fetch(:quantity, 1)
+          quantity: options.fetch(:quantity, 1),
         )
 
         if (trial_period_days = attributes.delete(:trial_period_days))
@@ -74,13 +76,15 @@ module Pay
           data: {
             brand: "Fake",
             last4: 1234,
-            exp_month: Date.today.month,
-            exp_year: Date.today.year
-          }
+            exp_month: Time.zone.today.month,
+            exp_year: Time.zone.today.year,
+          },
         )
 
         if default
+          # rubocop:disable Rails/SkipsModelValidations
           pay_customer.payment_methods.where.not(id: pay_payment_method.id).update_all(default: false)
+          # rubocop:enable Rails/SkipsModelValidations
           pay_customer.reload_default_payment_method
         end
 
@@ -92,7 +96,7 @@ module Pay
       end
 
       def trial_end_date(subscription)
-        Date.today
+        Time.zone.today
       end
     end
   end
