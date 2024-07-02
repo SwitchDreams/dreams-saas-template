@@ -10,7 +10,21 @@ Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwin
 
 ## Configuração
 
-### Biblioteca de componentes
+## Troca de nome do projeto
+
+O rails define alguns nomes para o projeto é interessante alterar nos seguintes arquivos:
+- `application.rb`
+- `config/cable.yml`
+- `config/database.yml`
+
+## Variáveis de ambiente
+
+No arquivo config/application.yml defina as seguintes variáveis
+
+```yaml
+DB_USER:
+DB_PASSWORD:
+```
 
 ### Configurando Logo
 
