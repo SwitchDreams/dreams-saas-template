@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   enum :role, { super_admin: 0, normal: 1 }
 
+  has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
 
   validates :name, presence: true

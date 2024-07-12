@@ -3,7 +3,7 @@
 class UserMailer < ApplicationMailer
   def password_reset
     @user = params[:user]
-    @signed_id = @user.generate_token_for(:password_reset)
+    @code = @user.password_reset_tokens.create!(code: rand(100_000..999_999)).code
 
     mail to: @user.email, subject: "Reset your password"
   end
