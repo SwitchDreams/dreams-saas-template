@@ -37,5 +37,16 @@ module DreamsSaasTemplate
     config.active_job.queue_adapter = :good_job
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Sendgrid configuration
+    config.action_mailer.smtp_settings = {
+      user_name: "apikey", # This is the string literal 'apikey', NOT the ID of your API key
+      password: Rails.application.credentials.dig(:sendgrid, :api_key) || ENV.fetch("SENDGRID_API_KEY", "default"),
+      domain: "switchdreams.com.br",
+      address: "smtp.sendgrid.net",
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true,
+    }
   end
 end

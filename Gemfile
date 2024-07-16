@@ -68,3 +68,6 @@ gem "thruster"
 
 # Multithreaded, Postgres-based, Active Job backend for Ruby on Rails.
 gem "good_job"
+
+# Mailer
+gem "sendgrid-ruby"
