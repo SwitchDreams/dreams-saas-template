@@ -71,3 +71,6 @@ gem "good_job"
 
 # Mailer
 gem "sendgrid-ruby"
+
+# Protection against abusive requests
+gem "rack-attack"

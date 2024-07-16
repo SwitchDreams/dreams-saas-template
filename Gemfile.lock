@@ -220,6 +220,8 @@ GEM
     raabro (1.4.0)
     racc (1.8.0)
     rack (3.1.6)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-proxy (0.7.7)
       rack
     rack-session (2.0.0)
@@ -409,6 +411,7 @@ DEPENDENCIES
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
+  rack-attack
   rails (~> 7.2.0.beta2)
   rspec-rails
   sendgrid-ruby
