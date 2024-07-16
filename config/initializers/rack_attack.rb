@@ -55,7 +55,6 @@ class Rack::Attack
   # on wood!)
   throttle("logins/email", limit: 5, period: 20.seconds) do |req|
     if req.path == "/sign_in" && req.post?
-      p req.params["email"].to_s.downcase.gsub(/\s+/, "").presence
       # Normalize the email, using the same logic as your authentication process, to
       # protect against rate limit bypasses. Return the normalized email if present, nil otherwise.
       req.params["email"].to_s.downcase.gsub(/\s+/, "").presence
