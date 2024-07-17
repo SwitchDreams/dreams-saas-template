@@ -34,7 +34,7 @@ const StepThree = ({ sid, code }) => {
       return;
     }
 
-    patch("identity/password_resets", {
+    patch("/identity/password_resets", {
       onError: (e) => {
         showAlert({ message: e });
       },

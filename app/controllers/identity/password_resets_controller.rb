@@ -15,9 +15,14 @@ class Identity::PasswordResetsController < ApplicationController
     @signed_id = @user.password_reset_tokens.last.signed_id(expires_in: 20.minutes)
 
     redirect_to identity_password_resets_step_two_path(sid: @signed_id)
-  rescue
+  rescue => e
+    error_message = if e.is_a?(ActiveRecord::RecordNotFound)
+      "não foi possível encontrar usuário com o email: #{params[:email]}"
+    else
+      e.message
+    end
     redirect_to identity_password_resets_step_one_path,
-      inertia: { errors: "Ocorreu um erro: não foi possível encontrar usuário com o email: #{params[:email]}" }
+      inertia: { errors: "Ocorreu um erro: #{error_message}" }
   end
 
   def step_two

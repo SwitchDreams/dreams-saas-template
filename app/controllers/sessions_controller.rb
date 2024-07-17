@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     if user.super_admin?
       "/avo"
     else
-      "/projects"
+      "/"
     end
   end
 
