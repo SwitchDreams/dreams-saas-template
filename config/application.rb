@@ -38,10 +38,20 @@ module DreamsSaasTemplate
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    def credentials_or_env(string_key, default: nil, preference: :env)
+      credentials_key = string_key.downcase.to_sym
+
+      if preference == :env
+        ENV[string_key] || credentials.dig(credentials_key) || default
+      else
+        credentials.dig(credentials_key) || ENV.fetch(string_key, default)
+      end
+    end
+
     # Sendgrid configuration
     config.action_mailer.smtp_settings = {
       user_name: "apikey", # This is the string literal 'apikey', NOT the ID of your API key
-      password: Rails.application.credentials.dig(:sendgrid, :api_key) || ENV.fetch("SENDGRID_API_KEY", "default"),
+      password: credentials_or_env("SENDGRID_API_KEY", default: ""),
       domain: "switchdreams.com.br",
       address: "smtp.sendgrid.net",
       port: 587,

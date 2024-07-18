@@ -16,4 +16,4 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV.fetch("DB_URL") {""} %>
+  url: <%= Rails.credentials_or_env("DB_URL") %>
