@@ -792,10 +792,10 @@
   dependencies:
     tslib "^2.4.0"
 
-"@switchdreams/ui@^1.2.1":
-  version "1.2.1"
-  resolved "https://npm.pkg.github.com/download/@switchdreams/ui/1.2.1/02e9a69fb9a2e905b42ceec3a71e021ac816f7d2#02e9a69fb9a2e905b42ceec3a71e021ac816f7d2"
-  integrity sha512-bK9lLL0EBJyO4LKpNwZfP9vxJGtze8mV0B+wBZhRoEEW86gPmlf09C/zRUHBHGkMT4nNzcZJk2Vc7RFk0ShN5g==
+"@switchdreams/ui@^1.2.3":
+  version "1.2.3"
+  resolved "https://npm.pkg.github.com/download/@switchdreams/ui/1.2.3/0c5a5d9be1875dc6f53566be831492db1603dbe3#0c5a5d9be1875dc6f53566be831492db1603dbe3"
+  integrity sha512-hfRRJX1K+pMuTNLy4QrIr3DID2PE1TtVoYtx2JQI52MTZ6I6RO4qb3X2pgkfXt8KRJLmNPwqpzwORIUCPNHGxw==
   dependencies:
     "@floating-ui/react" "^0.26.18"
     "@floating-ui/react-dom" "^2.1.1"
