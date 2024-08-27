@@ -44,8 +44,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@switchdreams'
           cache: yarn
 
       - name: Install postgres client
@@ -53,8 +51,6 @@ jobs:
 
       - name: Yarn Install
         run: yarn install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGE_TOKEN }}
 
       - name: Install Bundler
         run: gem install bundler
