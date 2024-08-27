@@ -74,3 +74,6 @@ gem "sendgrid-ruby"
 
 # Protection against abusive requests
 gem "rack-attack"
+
+# A collection of extensions, developer tools, and the community documentation for Inertia's Rails adapter.
+gem "inertia_rails-contrib"
