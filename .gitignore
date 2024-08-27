@@ -48,3 +48,6 @@ node_modules
 /config/application.yml
 
 coverage
+
+/config/credentials/production.key
+/config/credentials/staging.key

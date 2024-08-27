@@ -15,8 +15,6 @@ ENV RAILS_ENV=$RAILS_ENV \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development:test"
 
-RUN echo "//npm.pkg.github.com/:_authToken=${GH_PACKAGE_TOKEN}" > ~/.npmrc
-
 # Node Setup to install correct version of node
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl
