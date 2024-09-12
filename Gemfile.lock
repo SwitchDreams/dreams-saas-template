@@ -143,6 +143,9 @@ GEM
       concurrent-ruby (~> 1.0)
     inertia_rails (3.2.0)
       railties (>= 5)
+    inertia_rails-contrib (0.2.1)
+      inertia_rails
+      railties (>= 6.0.0)
     inline_svg (1.10.0)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
@@ -403,6 +406,7 @@ DEPENDENCIES
   figaro
   good_job
   inertia_rails
+  inertia_rails-contrib
   panko_serializer
   pg (~> 1.1)
   propshaft
