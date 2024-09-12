@@ -13,9 +13,13 @@ Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwin
 ## Troca de nome do projeto
 
 O rails define alguns nomes para o projeto é interessante alterar nos seguintes arquivos:
+
 - `application.rb`
 - `config/cable.yml`
 - `config/database.yml`
+- Nas actions do github
+
+Para facilitar é possível pesquisar por dreams_saas_template e fazer um replace via IDE pelo nome do novo projeto;
 
 ## Variáveis de ambiente
 
