@@ -1,3 +1,4 @@
+import generated from "@headlessui/tailwindcss";
 import { colors } from "@switchdreams/ui";
 import switchUiPlugin from "@switchdreams/ui/dist/tailwind.plugin";
 
@@ -29,5 +30,5 @@ module.exports = {
       },
     },
   },
-  plugins: [switchUiPlugin],
+  plugins: [switchUiPlugin, generated({ prefix: "ui" })],
 };
