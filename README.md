@@ -17,6 +17,7 @@ O rails define alguns nomes para o projeto é interessante alterar nos seguintes
 - `application.rb`
 - `config/cable.yml`
 - `config/database.yml`
+- `config/deploy.yml`
 - Nas actions do github
 
 Para facilitar é possível pesquisar por dreams_saas_template e fazer um replace via IDE pelo nome do novo projeto;
@@ -29,6 +30,12 @@ No arquivo config/application.yml defina as seguintes variáveis
 DB_USER:
 DB_PASSWORD:
 ```
+
+## Deploy
+
+- Para o deploy atualmente utilizamos o Kamal, para configuração acesse os arquivos:
+
+- `config/deploy.yml`
 
 ### Configurando Logo
 

@@ -77,3 +77,6 @@ gem "rack-attack"
 
 # A collection of extensions, developer tools, and the community documentation for Inertia's Rails adapter.
 gem "inertia_rails-contrib"
+
+# Just the right amount of Rails eager loading
+gem "goldiloader"
