@@ -49,7 +49,8 @@ gem "bcrypt", "~> 3.1.7"
 gem "vite_rails"
 
 # The Rails adapter for Inertia.js.
-gem "inertia_rails"
+# TODO: Fixes in 3.3.0 because: https://github.com/inertiajs/inertia-rails/issues/166
+gem "inertia_rails", "3.3.0"
 
 # Build Ruby on Rails apps 10x faster
 gem "avo"
