@@ -2,6 +2,7 @@
 
 module Pay
   module Asaas
+    autoload :Customer, "pay/asaas/customer"
     autoload :Billable, "pay/asaas/billable"
     autoload :Charge, "pay/asaas/charge"
     autoload :Error, "pay/asaas/error"

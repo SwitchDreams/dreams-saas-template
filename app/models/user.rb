@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  pay_customer default_payment_processor: :fake_processor
+  pay_customer default_payment_processor: :asaas
+
   has_secure_password
 
   generates_token_for :email_verification, expires_in: 2.days do
