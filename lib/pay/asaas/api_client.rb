@@ -22,12 +22,26 @@ module Pay::Asaas::ApiClient
     response.parsed_response
   end
 
+  def self.create_pix_charge!(processor_id:, amount:, other_params: {})
+    body = {
+      "billingType": "PIX",
+      "customer": processor_id,
+      "value": amount.to_f / 100,
+      **other_params,
+    }.to_json
+
+    response = HTTParty.post("#{@base_url}/v3/payments", headers: @default_headers, body: body, format: :json)
+    error_handler(response)
+
+    response.parsed_response
+  end
+
   def self.error_handler(response)
     if response.code != 200
       if response["errors"].present?
-        raise response["errors"].first["description"]
+        raise StandardError, response["errors"].first["description"]
       else
-        raise "Ocorreu um erro não identificado na requisição. Por favor, tente novamente mais tarde."
+        raise StandardError, "Ocorreu um erro não identificado na requisição. Por favor, tente novamente mais tarde."
       end
     end
   end

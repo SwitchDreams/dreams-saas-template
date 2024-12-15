@@ -4,5 +4,8 @@ module Pay
   module Asaas
     class Error < Pay::Error
     end
+
+    class ApiClientError < StandardError
+    end
   end
 end
