@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.0.beta2"
+gem "rails", "~> 8.0.0"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -49,7 +49,8 @@ gem "bcrypt", "~> 3.1.7"
 gem "vite_rails"
 
 # The Rails adapter for Inertia.js.
-gem "inertia_rails"
+# TODO: Fixes in 3.3.0 because: https://github.com/inertiajs/inertia-rails/issues/166
+gem "inertia_rails", "3.3.0"
 
 # Build Ruby on Rails apps 10x faster
 gem "avo"
@@ -68,5 +69,17 @@ gem "thruster"
 
 # Multithreaded, Postgres-based, Active Job backend for Ruby on Rails.
 gem "good_job"
+
+# Mailer
+gem "sendgrid-ruby"
+
+# Protection against abusive requests
+gem "rack-attack"
+
+# A collection of extensions, developer tools, and the community documentation for Inertia's Rails adapter.
+gem "inertia_rails-contrib"
+
+# Just the right amount of Rails eager loading
+gem "goldiloader"
 
 gem "pay"

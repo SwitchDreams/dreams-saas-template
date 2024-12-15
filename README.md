@@ -10,7 +10,32 @@ Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwin
 
 ## Configuração
 
-### Biblioteca de componentes
+## Troca de nome do projeto
+
+O rails define alguns nomes para o projeto é interessante alterar nos seguintes arquivos:
+
+- `application.rb`
+- `config/cable.yml`
+- `config/database.yml`
+- `config/deploy.yml`
+- Nas actions do github
+
+Para facilitar é possível pesquisar por dreams_saas_template e fazer um replace via IDE pelo nome do novo projeto;
+
+## Variáveis de ambiente
+
+No arquivo config/application.yml defina as seguintes variáveis
+
+```yaml
+DB_USER:
+DB_PASSWORD:
+```
+
+## Deploy
+
+- Para o deploy atualmente utilizamos o Kamal, para configuração acesse os arquivos:
+
+- `config/deploy.yml`
 
 ### Configurando Logo
 

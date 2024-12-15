@@ -5,7 +5,7 @@ import ViteRails from "vite-plugin-rails";
 
 export default defineConfig({
   build: { sourcemap: false },
-  plugins: [ ViteRails(), react()],
+  plugins: [ViteRails(), react()],
   test: {
     environment: "jsdom",
     setupFiles: ["./test/setup.js"],

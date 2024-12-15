@@ -1,8 +1,8 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.3
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+ARG RUBY_VERSION=3.3.5
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
 ARG RAILS_ENV='production'
 
 # Rails app lives here
@@ -27,7 +27,7 @@ RUN apt-get install --no-install-recommends -y nodejs && \
 
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get install --no-install-recommends -y build-essential git libvips pkg-config libpq-dev
@@ -60,6 +60,10 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["./bin/bundle", "exec", "thrust", "./bin/rails", "server"]
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Start server via Thruster by default, this can be overwritten at runtime
+EXPOSE 80
+CMD ["./bin/thrust", "./bin/rails", "server"]
+

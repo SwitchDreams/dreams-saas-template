@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
   delete "sign_out", to: "sessions#destroy", as: :logout
 
-  resources :sessions, only: [:index, :show, :destroy]
-
   # Password Reset
   namespace :identity do
     get "password_resets/step_one", to: "password_resets#step_one"
