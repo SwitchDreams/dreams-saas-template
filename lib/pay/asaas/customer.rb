@@ -7,7 +7,8 @@ module Pay
       has_one :default_payment_method, -> { where(default: true) }, class_name: "Pay::Asaas::PaymentMethod"
 
       def api_record_attributes
-        { email: email, name: customer_name }
+        # TODO: where to format document
+        { email: email, name: customer_name, cpfCnpj: owner.document, externalReference: owner.id }
       end
 
       # TODO: what to return in this method?
@@ -22,47 +23,32 @@ module Pay
       rescue => e
         # TODO: Handle error better
         Rails.logger.error "[Pay] Error creating Asaas customer: #{e.message}"
-        #raise Pay::Stripe::Error, e
+        # raise Pay::Stripe::Error, e
       end
 
+      def update_api_record(**attributes)
+        api_record unless processor_id?
+        ApiClient.update_client!(id: processor_id, params: api_record_attributes.merge(attributes))
+      end
 
       # Charges an amount to the customer's default payment method
       def charge(amount, options = {})
         transaction = ApiClient.create_pix_charge!(
           processor_id: processor_id,
           amount: amount,
-          other_params: options)
+          other_params: options.merge(dueDate: Time.zone.today.to_s))
 
+        puts transaction
         attrs = {
-          amount: transaction.details.totals.grand_total,
-          created_at: transaction.created_at,
-          currency: transaction.currency_code,
-          metadata: transaction.details.line_items&.first&.id
+          amount: amount,
         }
 
-        charge = charges.find_or_initialize_by(processor_id: transaction.id)
+        charge = charges.find_or_initialize_by(processor_id: transaction["id"])
         charge.update(attrs)
         charge
       rescue StandardError => e
-        raise Pay::Assas::Error, e
+        Rails.logger.error "[Pay] Error creating Asaas charge: #{e.message}"
       end
-    end
-
-    private
-
-    ### Stripe extras
-
-    # Creates and returns a Stripe::PaymentIntent
-    def create_payment_intent(amount, options = {})
-      args = {
-        amount: amount,
-        currency: "usd",
-        customer: processor_id || api_record.id,
-        expand: ["latest_charge.refunds"],
-        return_url: root_url
-      }.merge(options)
-
-      ::Stripe::PaymentIntent.create(args, stripe_options)
     end
   end
 end

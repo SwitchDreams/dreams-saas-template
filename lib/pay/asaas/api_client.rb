@@ -15,6 +15,15 @@ module Pay::Asaas::ApiClient
     response.parsed_response
   end
 
+  def self.update_client!(id:, params:)
+    body = params.to_json
+
+    response = HTTParty.put("#{@base_url}/v3/customers/#{id}", headers: @default_headers, body: body, format: :json)
+    error_handler(response)
+
+    response.parsed_response
+  end
+
   def self.find_client!(id:)
     response = HTTParty.get("#{@base_url}/v3/customers/#{id}", headers: @default_headers, format: :json)
     error_handler(response)
@@ -41,6 +50,7 @@ module Pay::Asaas::ApiClient
       if response["errors"].present?
         raise StandardError, response["errors"].first["description"]
       else
+        Rails.logger.error "Asaas API Error: #{response.code} - #{response.body}"
         raise StandardError, "Ocorreu um erro não identificado na requisição. Por favor, tente novamente mais tarde."
       end
     end

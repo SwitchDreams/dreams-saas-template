@@ -2,19 +2,7 @@
 
 module Pay
   module Asaas
-    class Charge
-      attr_reader :pay_charge
-
-      delegate :processor_id, :owner, to: :pay_charge
-
-      def initialize(pay_charge)
-        @pay_charge = pay_charge
-      end
-
-      def charge
-        pay_charge
-      end
-
+    class Charge < Pay::Charge
       def self.sync(charge_id, object: nil, try: 0, retries: 1)
         object ||= Pay.braintree_gateway.transaction.find(charge_id)
 
@@ -32,6 +20,10 @@ module Pay
         else
           raise
         end
+      end
+
+      def api_record
+        raise NotImplementedError, "TODO: Implement this method"
       end
 
       def refund!(amount_to_refund)
