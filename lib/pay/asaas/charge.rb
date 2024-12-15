@@ -11,7 +11,8 @@ module Pay
 
         ApiClient.create_pix_charge!(
           processor_id: pay_customer.processor_id,
-          amount: object.amount)
+          amount: object.amount,
+        )
       rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
         try += 1
         if try <= retries

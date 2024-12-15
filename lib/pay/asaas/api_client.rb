@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pay::Asaas::ApiClient
   API_KEY = ENV.fetch("ASAAS_API_KEY")
   DEFAULT_PAYMENT_URL = ENV.fetch("ASAAS_API_URL", "https://sandbox.asaas.com/api")

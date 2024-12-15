@@ -18,5 +18,5 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'Asaas', 'Asaas'
+  inflect.irregular "Asaas", "Asaas"
 end

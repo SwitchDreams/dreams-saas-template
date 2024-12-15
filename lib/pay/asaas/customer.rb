@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Pay
   module Asaas
     class Customer < Pay::Customer
-
       has_many :charges, dependent: :destroy, class_name: "Pay::Asaas::Charge"
       has_many :payment_methods, dependent: :destroy, class_name: "Pay::Asaas::PaymentMethod"
       has_one :default_payment_method, -> { where(default: true) }, class_name: "Pay::Asaas::PaymentMethod"
@@ -17,7 +18,7 @@ module Pay
           ApiClient.find_client!(id: processor_id)
         else
           customer_response = ApiClient.create_client!(api_record_attributes)
-          update!(processor_id: customer_response["id"]) # TODO is not updating
+          update!(processor_id: customer_response["id"]) # TODO: is not updating
           customer_response
         end
       rescue => e
@@ -36,9 +37,10 @@ module Pay
         transaction = ApiClient.create_pix_charge!(
           processor_id: processor_id,
           amount: amount,
-          other_params: options.merge(dueDate: Time.zone.today.to_s))
+          other_params: options.merge(dueDate: Time.zone.today.to_s),
+        )
 
-        puts transaction
+        Rails.logger.debug transaction
         attrs = {
           amount: amount,
         }
