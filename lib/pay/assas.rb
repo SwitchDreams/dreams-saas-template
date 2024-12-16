@@ -7,4 +7,9 @@ module Pay
     autoload :Error, "pay/asaas/error"
     autoload :PaymentMethod, "pay/asaas/payment_method"
   end
+
+  extend Env
+  def self.webhook_access_key
+    find_value_by_name(:asaas, :webhook_access_key)
+  end
 end
