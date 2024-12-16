@@ -2,7 +2,7 @@
 
 module Pay
   module Asaas
-    class PaymentMethod
+    class PaymentMethod < Pay::PaymentMethod
       attr_reader :pay_payment_method
 
       delegate :customer, :processor_id, to: :pay_payment_method
