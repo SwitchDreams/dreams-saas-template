@@ -2,5 +2,7 @@
 
 class CurrentUserSerializer < ApplicationSerializer
   attributes :id,
-    :name
+    :name,
+    :email
 end
+
