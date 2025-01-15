@@ -2,5 +2,7 @@
 
 class CurrentUserSerializer < ApplicationSerializer
   attributes :id,
-    :name
+    :name,
+    :subscription_status,
+    :subscription_ends_at
 end

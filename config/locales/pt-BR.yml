@@ -172,6 +172,26 @@ pt-BR:
       submit: Salvar %{model}
       update: Atualizar %{model}
   support:
+  subscriptions:
+    statuses:
+      none: "Sem assinatura"
+      active: "Ativa"
+      canceled: "Cancelada"
+    messages:
+      active_subscription: "Sua assinatura está ativa. Aproveite todos os recursos premium!"
+      canceled_subscription: "Sua assinatura foi cancelada e permanecerá ativa até %{date}."
+      no_subscription: "Assine agora para ter acesso a todos os recursos premium da plataforma."
+      next_renewal: "Próxima renovação: %{date}"
+      price_per_month: "R$ 10,00/mês"
+    actions:
+      subscribe: "Assinar agora"
+      cancel: "Cancelar assinatura"
+      renew: "Renovar assinatura"
+      manage: "Gerenciar Assinatura"
+    created_successfully: "Assinatura criada com sucesso!"
+    cancelled_successfully: "Assinatura cancelada com sucesso!"
+    creation_failed: "Não foi possível criar a assinatura. Tente novamente."
+    cancellation_failed: "Não foi possível cancelar a assinatura. Tente novamente."
     array:
       last_word_connector: " e "
       two_words_connector: " e "

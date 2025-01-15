@@ -10,7 +10,8 @@ class User < ApplicationRecord
     password_salt.last(10)
   end
 
-  enum :role, { super_admin: 0, normal: 1 }
+  enum :role, { super_admin: 0, normal: 1 }, default: :normal
+  enum :subscription_status, { none: 0, active: 1, canceled: 2 }, default: :none
 
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
@@ -18,6 +19,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 6 }
+
+  scope :active_subscribers, -> { where(subscription_status: :active) }
 
   normalizes :email, with: -> { _1.strip.downcase }
 
@@ -27,5 +30,19 @@ class User < ApplicationRecord
 
   after_update if: :password_digest_previously_changed? do
     sessions.where.not(id: Current.session).delete_all
+  end
+
+  def subscribed?
+    subscription_status != "none"
+  end
+
+  def subscription_active?
+    subscription_status == "active" && (subscription_ends_at.nil? || subscription_ends_at > Time.current)
+  end
+
+  def cancel_subscription
+    update(
+      subscription_status: :canceled
+    )
   end
 end
