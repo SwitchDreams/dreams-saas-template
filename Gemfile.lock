@@ -146,8 +146,8 @@ GEM
       thor (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    inertia_rails (3.3.0)
-      railties (>= 5)
+    inertia_rails (3.6.0)
+      railties (>= 6)
     inertia_rails-contrib (0.3.0)
       inertia_rails
       railties (>= 6.0.0)
@@ -426,7 +426,7 @@ DEPENDENCIES
   figaro
   goldiloader
   good_job
-  inertia_rails (= 3.3.0)
+  inertia_rails
   inertia_rails-contrib
   panko_serializer
   pg (~> 1.1)

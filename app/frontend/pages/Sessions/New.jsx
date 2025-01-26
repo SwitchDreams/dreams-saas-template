@@ -21,7 +21,7 @@ const SessionNew = () => {
     e.preventDefault();
     post("/sign_in", {
       onError: (e) => {
-        showAlert({ message: e });
+        showAlert({ message: e.error });
       },
     });
   };

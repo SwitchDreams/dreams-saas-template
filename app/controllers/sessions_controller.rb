@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
       redirect_to logged_path(user)
     else
-      redirect_to sign_in_path, inertia: { errors: "Credenciais Inválidas" }
+      redirect_to sign_in_path, inertia: { errors: { error: "Credenciais Inválidas" } }
     end
   end
 
