@@ -3,7 +3,7 @@ env:
   DB_USER: user
   DB_PASSWORD: password
   POSTGRES_DB: password
-  RUBY_VERSION: 3.3.5
+  RUBY_VERSION: 3.4.1
 
 on:
   pull_request:
