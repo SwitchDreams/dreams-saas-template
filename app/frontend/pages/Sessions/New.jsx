@@ -6,6 +6,8 @@ import React, { useContext, useState } from "react";
 import { AlertContext } from "@/contexts/Alert";
 import { imagePath } from "@/utils";
 
+import GoogleSignButton from "../../components/signIn/GoogleSignButton";
+
 const SessionNew = () => {
   const [showPassword, setShowPassword] = useState(false);
   const showPasswordIcon = () => {
@@ -68,6 +70,7 @@ const SessionNew = () => {
               </Link>
               <Button className="mt-6 rounded-sm" variant="primary" label="Entrar" size="lg" />
             </form>
+            <GoogleSignButton />
             <Text size="sm" className="cursor-pointer pt-6 text-center text-gray-600">
               Não possui uma conta?
             </Text>
