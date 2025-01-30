@@ -3,9 +3,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate
   def index
-    user = session_record&.user
-    render inertia: "Home/Index", props: {
-      user: user,
-    }
+    render inertia: "Home/Index"
   end
 end

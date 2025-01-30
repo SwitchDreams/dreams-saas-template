@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Sessions::OmniauthController < ApplicationController
-  skip_before_action :verify_authenticity_token
   skip_before_action :authenticate
+
   def create
     user = User.find_by(email: user_params[:email])
     user = User.create!(user_params.except(:provider, :uid).merge(
       password: SecureRandom.base58,
-      role: 1, # Client role
     )) unless user
     @session = user.sessions.create!
     cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }

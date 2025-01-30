@@ -8,7 +8,7 @@ env:
 on:
   pull_request:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   rubocop:
@@ -44,6 +44,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@switchdreams"
           cache: yarn
 
       - name: Install postgres client

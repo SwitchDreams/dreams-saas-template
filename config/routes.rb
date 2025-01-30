@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete "sign_out", to: "sessions#destroy", as: :logout
 
   get "/auth/:provider/callback", to: "sessions/omniauth#create"
+  get "/auth/failure", to: "sessions/omniauth#failure"
 
   # Password Reset
   namespace :identity do
