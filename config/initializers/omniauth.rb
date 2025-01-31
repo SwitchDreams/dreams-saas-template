@@ -7,8 +7,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 
   provider :google_oauth2,
-    Rails.application.credentials_or_env("GOOGLE_CLIENT_ID", default: ""),
-    Rails.application.credentials_or_env("GOOGLE_CLIENT_SECRET", default: ""),
+    Rails.application.credentials_or_env("GOOGLE_CLIENT_ID", default: "chaveTeste"),
+    Rails.application.credentials_or_env("GOOGLE_CLIENT_SECRET", default: "chaveTeste"),
     {
       scope: "email, profile",
       prompt: "select_account",
