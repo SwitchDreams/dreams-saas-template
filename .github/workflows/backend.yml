@@ -8,7 +8,7 @@ env:
 on:
   pull_request:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   rubocop:
@@ -44,7 +44,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
-          cache: yarn
 
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
@@ -62,6 +61,10 @@ jobs:
         run: |
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
+
+      - name: Install npm packages
+        run: |
+          npm install --force
 
       - name: Assets precompile
         run: bundle exec rails assets:precompile RAILS_ENV=test
