@@ -34,8 +34,6 @@ jobs:
         env:
           POSTGRES_USER: ${{ env.DB_USER }}
           POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
-          GOOGLE_CLIENT_ID: ${{ " " }}
-          GOOGLE_CLIENT_SECRET: ${{ " " }}
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -46,9 +44,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@switchdreams"
-          cache: yarn
 
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
