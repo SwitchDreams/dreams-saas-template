@@ -64,7 +64,7 @@ jobs:
 
       - name: Install npm packages
         run: |
-          npm install
+          npm install --force
 
       - name: Assets precompile
         run: bundle exec rails assets:precompile RAILS_ENV=test
