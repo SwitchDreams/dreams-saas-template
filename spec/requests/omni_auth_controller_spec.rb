@@ -8,7 +8,7 @@ def login_with_google_oauth
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 end
 
-RSpec.describe OmniAuthController, type: :request do
+RSpec.describe Sessions::OmniauthController, type: :request do
   describe "GET /auth/google_oauth2/" do
     context "when user is new" do
       it "creates an user and redirects the user" do
