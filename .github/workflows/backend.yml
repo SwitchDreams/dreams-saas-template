@@ -55,8 +55,8 @@ jobs:
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
 
-      - name: Yarn Install
-        run: pnpm install
+      - name: Pnpm Install
+        run: pnpm install --frozen-lockfile
 
       - name: Install Bundler
         run: gem install bundler
