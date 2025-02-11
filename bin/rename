@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'active_support/core_ext/string/inflections'
+
+def print_usage
+  puts "Usage: bin/rename NEW_PROJECT_NAME"
+  puts "Example: bin/rename my_awesome_app"
+  exit 1
+end
+
+def rename_in_file(file_path, old_name, new_name)
+  return unless File.exist?(file_path)
+  
+  content = File.read(file_path)
+  File.write(file_path, content.gsub(old_name, new_name))
+end
+
+# Verifica se o nome do novo projeto foi fornecido
+print_usage if ARGV.empty?
+
+new_name = ARGV[0].downcase
+old_name = "dreams_saas_template"
+
+puts "🔄 Renomeando projeto de '#{old_name}' para '#{new_name}'..."
+
+# Lista de arquivos para renomear
+files_to_update = [
+  'config/application.rb',
+  'config/cable.yml',
+  'config/database.yml',
+  'config/deploy.yml',
+  ".devcontainer/devcontainer.json",
+  ".devcontainer/compose.yaml",
+  'config/environments/production.rb',
+  '.github/workflows/ci.yml',
+  '.github/workflows/deploy.yml'
+]
+
+# Atualiza cada arquivo
+files_to_update.each do |file|
+  if File.exist?(file)
+    puts "📝 Atualizando #{file}..."
+    rename_in_file(file, old_name, new_name)
+    rename_in_file(file, old_name.camelize, new_name.camelize)
+  else
+    puts "⚠️  Arquivo não encontrado: #{file}"
+  end
+end
+
+puts "✅ Projeto renomeado com sucesso!"
+puts "\nPróximos passos:"
+puts "1. Verifique se todos os arquivos foram atualizados corretamente"
+puts "2. Execute 'bin/rails restart' para aplicar as mudanças"
+puts "3. Atualize o README.md com as informações do seu novo projeto"
