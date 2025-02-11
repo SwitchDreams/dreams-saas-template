@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: dream_saas_template_development
+  database: dreams_saas_template_development
 
 test:
   <<: *default
-  database: dream_saas_template_test
+  database: dreams_saas_template_test
 
 production: &production
   <<: *default
