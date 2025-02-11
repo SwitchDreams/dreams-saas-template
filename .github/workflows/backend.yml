@@ -41,15 +41,22 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
+          cache: 'pnpm'
 
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
 
-      - name: Yarn Install
-        run: yarn install --frozen-lockfile
+      - name: Pnpm Install
+        run: pnpm install --frozen-lockfile
 
       - name: Install Bundler
         run: gem install bundler
@@ -61,10 +68,6 @@ jobs:
         run: |
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
-
-      - name: Install npm packages
-        run: |
-          npm install --force
 
       - name: Assets precompile
         run: bundle exec rails assets:precompile RAILS_ENV=test

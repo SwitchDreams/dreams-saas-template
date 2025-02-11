@@ -4,7 +4,7 @@ Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwin
 
 ## Quick Start
 
-- `yarn install` e `bundle install`
+- `pnpm install` e `bundle install`
 - Configure as variáveis de ambientes necessárias
 - Rode o projeto com o comando `./bin/dev`
 
@@ -29,6 +29,10 @@ No arquivo config/application.yml defina as seguintes variáveis
 ```yaml
 DB_USER:
 DB_PASSWORD:
+
+# Login com Google Opcional
+GOOGLE_CLIENT_ID:
+GOOGLE_CLIENT_SECRET:
 ```
 
 ## Deploy
