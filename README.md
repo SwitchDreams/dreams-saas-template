@@ -29,6 +29,10 @@ No arquivo config/application.yml defina as seguintes variáveis
 ```yaml
 DB_USER:
 DB_PASSWORD:
+
+# Login com Google Opcional
+GOOGLE_CLIENT_ID:
+GOOGLE_CLIENT_SECRET:
 ```
 
 ## Deploy
