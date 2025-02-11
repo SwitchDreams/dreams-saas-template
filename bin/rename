@@ -29,7 +29,8 @@ files_to_update = [
   'config/cable.yml',
   'config/database.yml',
   'config/deploy.yml',
-  
+  ".devcontainer/devcontainer.json",
+  ".devcontainer/compose.yaml",
   'config/environments/production.rb',
   '.github/workflows/ci.yml',
   '.github/workflows/deploy.yml'
