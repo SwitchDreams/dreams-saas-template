@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_192620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
     t.datetime "enqueued_at"
     t.datetime "discarded_at"
     t.datetime "finished_at"
+    t.datetime "jobs_finished_at"
   end
 
   create_table "good_job_executions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
     t.integer "error_event", limit: 2
     t.text "error_backtrace", array: true
     t.uuid "process_id"
+    t.interval "duration"
     t.index ["active_job_id", "created_at"], name: "index_good_job_executions_on_active_job_id_and_created_at"
     t.index ["process_id", "created_at"], name: "index_good_job_executions_on_process_id_and_created_at"
   end
@@ -88,6 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
     t.index ["active_job_id", "created_at"], name: "index_good_jobs_on_active_job_id_and_created_at"
     t.index ["batch_callback_id"], name: "index_good_jobs_on_batch_callback_id", where: "(batch_callback_id IS NOT NULL)"
     t.index ["batch_id"], name: "index_good_jobs_on_batch_id", where: "(batch_id IS NOT NULL)"
+    t.index ["concurrency_key", "created_at"], name: "index_good_jobs_on_concurrency_key_and_created_at"
     t.index ["concurrency_key"], name: "index_good_jobs_on_concurrency_key_when_unfinished", where: "(finished_at IS NULL)"
     t.index ["cron_key", "created_at"], name: "index_good_jobs_on_cron_key_and_created_at_cond", where: "(cron_key IS NOT NULL)"
     t.index ["cron_key", "cron_at"], name: "index_good_jobs_on_cron_key_and_cron_at_cond", unique: true, where: "(cron_key IS NOT NULL)"
@@ -118,21 +121,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "user_accounts", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "auth_provider", default: "oauth2"
-    t.string "provider"
-    t.string "provider_account_id"
-    t.string "access_token"
-    t.string "token_type", default: "Bearer"
-    t.string "scope"
-    t.string "refresh_token"
-    t.datetime "expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_accounts_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -146,5 +134,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_150813) do
 
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
-  add_foreign_key "user_accounts", "users"
 end
