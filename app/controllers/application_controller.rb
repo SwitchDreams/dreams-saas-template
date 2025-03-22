@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_user
+    Current.user
+  end
+
   def serialize(resource, serializer_class)
     if resource.respond_to?(:length)
       Panko::ArraySerializer.new(resource, each_serializer: serializer_class).to_a

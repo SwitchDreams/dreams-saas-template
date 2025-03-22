@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateGoodJobs < ActiveRecord::Migration[7.2]
+class CreateGoodJobs < ActiveRecord::Migration[8.0]
   def change
     # Uncomment for Postgres v12 or earlier to enable gen_random_uuid() support
     # enable_extension 'pgcrypto'
@@ -46,6 +46,7 @@ class CreateGoodJobs < ActiveRecord::Migration[7.2]
       t.datetime :enqueued_at
       t.datetime :discarded_at
       t.datetime :finished_at
+      t.datetime :jobs_finished_at
     end
 
     create_table :good_job_executions, id: :uuid do |t|
@@ -61,6 +62,7 @@ class CreateGoodJobs < ActiveRecord::Migration[7.2]
       t.integer :error_event, limit: 2
       t.text :error_backtrace, array: true
       t.uuid :process_id
+      t.interval :duration
     end
 
     create_table :good_job_processes, id: :uuid do |t|
@@ -86,6 +88,7 @@ class CreateGoodJobs < ActiveRecord::Migration[7.2]
       :concurrency_key,
       where: "(finished_at IS NULL)",
       name: :index_good_jobs_on_concurrency_key_when_unfinished
+    add_index :good_jobs, [:concurrency_key, :created_at], name: :index_good_jobs_on_concurrency_key_and_created_at
     add_index :good_jobs,
       [:cron_key, :created_at],
       where: "(cron_key IS NOT NULL)",
