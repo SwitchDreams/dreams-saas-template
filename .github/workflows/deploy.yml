@@ -35,8 +35,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          build-args: |
-            GH_PACKAGE_TOKEN=${{ secrets.GH_PACKAGE_TOKEN }}
           push: true
           tags: switchdreams/projects:dreams_saas_template-${{ steps.docker-tag.outputs.tag }}
           cache-from: type=gha
