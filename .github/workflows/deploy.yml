@@ -62,14 +62,14 @@ jobs:
         env:
           DOCKER_TAG: dreams_saas_template-${{ needs.build.outputs.docker-tag }}
         run: |
-          yq -i e '.deployment.api.image.tag = "${{env.DOCKER_TAG}}"' dreams_saas_template/values.yaml
+          yq -i e '.deployment.web.image.tag = "${{env.DOCKER_TAG}}"' dreams_saas_template/values.yaml
           yq -i e '.deployment.worker.image.tag = "${{env.DOCKER_TAG}}"' dreams_saas_template/values.yaml
 
 
       - name: Commit files to Switch Deployment repository
         run: |
-          git config --local user.email "joaopedroassisdossantos@gmail.com"
-          git config --local user.name "João Pedro Assis"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Update dreams_saas_template tag to ${{ needs.build.outputs.docker-tag }}"
           git push
