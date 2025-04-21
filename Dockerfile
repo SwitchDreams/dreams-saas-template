@@ -30,7 +30,7 @@ RUN apt-get install --no-install-recommends -y nodejs && \
 FROM base AS build
 
 # Install packages needed to build gems
-RUN apt-get install --no-install-recommends -y build-essential git libvips pkg-config libpq-dev
+RUN apt-get install --no-install-recommends -y build-essential git libvips pkg-config libyaml-dev libpq-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
