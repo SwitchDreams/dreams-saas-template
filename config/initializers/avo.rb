@@ -37,9 +37,7 @@ Avo.configure do |config|
     end
   end
 
-  Avo.configure do |config|
-    config.sign_out_path_name = :logout
-  end
+  config.sign_out_path_name = :logout_path
 
   ## == Authentication ==
   # config.current_user_method = {}
