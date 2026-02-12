@@ -48,7 +48,10 @@ export const AlertProvider = ({ children }) => {
   const { errors } = usePage().props;
 
   useEffect(() => {
-    if (errors) showAlert({ message: errors });
+    if (errors) {
+      const errorMessage = typeof errors === "string" ? errors : Object.values(errors)[0];
+      showAlert({ message: errorMessage });
+    }
   }, [errors]);
 
   return (
