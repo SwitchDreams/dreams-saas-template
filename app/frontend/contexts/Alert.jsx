@@ -1,6 +1,5 @@
 import { Transition } from "@headlessui/react";
 import { usePage } from "@inertiajs/react";
-import { Toast } from "@switchdreams/ui";
 import React, { createContext, useEffect, useState } from "react";
 
 const alertContextDefaultValue = {
@@ -68,13 +67,30 @@ export const AlertProvider = ({ children }) => {
         leaveTo="opacity-0"
       >
         <div className="fixed right-4 top-4 z-50">
-          <Toast
-            color={content.type}
-            message={content.message}
-            onClose={() => setIsOpen(false)}
-            title={content.title}
-            variant="tonal"
-          />
+          <div
+            className={`flex items-center gap-3 rounded-lg border p-4 shadow-lg ${
+              content.type === "error"
+                ? "border-red-200 bg-red-50 text-red-900"
+                : content.type === "success"
+                  ? "border-green-200 bg-green-50 text-green-900"
+                  : content.type === "warning"
+                    ? "border-yellow-200 bg-yellow-50 text-yellow-900"
+                    : "border-blue-200 bg-blue-50 text-blue-900"
+            }`}
+          >
+            <div className="flex-1">
+              {content.title && <p className="font-semibold">{content.title}</p>}
+              <p className="text-sm">{content.message}</p>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-current opacity-70 hover:opacity-100"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
       </Transition>
       {children}

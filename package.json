@@ -8,7 +8,6 @@
     "@headlessui/tailwindcss": "^0.2.2",
     "@heroicons/react": "^2.2.0",
     "@inertiajs/react": "^2.3.14",
-    "@switchdreams/ui": "^1.5.2",
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.5",
     "react": "^19.2.4",
