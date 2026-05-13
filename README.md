@@ -1,67 +1,107 @@
-# Dreams SaaS template
+# Dreams SaaS Template
 
-Template para projetos SaaS utilizando a stack Rails + Inertia + React + Tailwind.
+Template inicial para projetos SaaS construído com a stack Rails + Inertia + React + Tailwind.
 
-## Quick Start
+## Visão Geral
 
-- `pnpm install` e `bundle install`
-- Configure as variáveis de ambientes necessárias
-- Rode o projeto com o comando `./bin/dev`
+Este template fornece uma base sólida para o desenvolvimento de aplicações SaaS, integrando tecnologias modernas e práticas estabelecidas de desenvolvimento.
 
-## Configuração
+## Stack Tecnológica
 
-## Troca de nome do projeto
+- **Backend**: Ruby on Rails
+- **Frontend**: React com Inertia.js
+- **Estilização**: Tailwind CSS
+- **Administração**: AVO
+- **Autenticação**: authentication-zero
+- **Serialização**: Panko Serializer
+- **Jobs**: GoodJob
+- **Deploy**: Kamal
 
-Utilize o comando `bin/rename nome_do_projeto` para renomear os arquivos necessários.
+## Configuração Inicial
 
-## Variáveis de ambiente
+### Pré-requisitos
 
-No arquivo config/application.yml defina as seguintes variáveis
+Certifique-se de ter as seguintes ferramentas instaladas:
+
+- Ruby
+- Node.js e pnpm
+- PostgreSQL (ou outro banco de dados compatível)
+
+### Instalação
+
+```bash
+# Instale as dependências Ruby
+bundle install
+
+# Instale as dependências JavaScript
+pnpm install
+```
+
+### Variáveis de Ambiente
+
+Configure as variáveis de ambiente no arquivo `config/application.yml`:
 
 ```yaml
 DB_USER:
 DB_PASSWORD:
 
-# Login com Google Opcional
+# Autenticação com Google (opcional)
 GOOGLE_CLIENT_ID:
 GOOGLE_CLIENT_SECRET:
 ```
 
+### Execução
+
+```bash
+./bin/dev
+```
+
+## Personalização
+
+### Renomeação do Projeto
+
+Para renomear o projeto, utilize o comando:
+
+```bash
+bin/rename nome_do_projeto
+```
+
+Este comando atualizará todos os arquivos e referências necessárias.
+
+### Identidade Visual
+
+Os seguintes assets são utilizados no template e devem ser personalizados:
+
+- **Logo principal**: `public/images/logo.svg`
+- **Imagem de fundo**: `public/images/back-login.png`
+
 ## Deploy
 
-- Para o deploy atualmente utilizamos o Kamal, para configuração acesse os arquivos:
+O deploy é configurado através do Kamal. Para ajustar as configurações, consulte o arquivo:
 
 - `config/deploy.yml`
 
-### Configurando Logo
+## Arquitetura
 
-Alguns assets de arquivos são utilizados durante as telas do nosso template, recomendo trocá-los:
+### Serialização
 
-- Logo principal (public/images/logo.svg)
-- Imagem de fundo do background (public/images/back-login.png)
+O template utiliza a gem `panko_serializer` para serialização de dados. Recomenda-se utilizar o método `serializer` disponível no `ApplicationController` como interface abstrata, evitando o uso direto da gem.
 
-### Serializer
+### Sistema de Autenticação
 
-Para os serializers nós utilizamos a gem "panko_serializer", porém tente não utilizá-la diretamente, temos um método
-`serializer` na `application_controller` que serve como interface para o Panko;
+A autenticação é gerenciada pela gem `authentication-zero`, proporcionando os seguintes recursos:
 
-### Sistema de Usuários
+- Autenticação padrão
+- Autenticação via OAuth (Google)
+- Recuperação de senha
 
-Utilizamos a gem "authentication-zero", temos os seguintes módulos:
+### Roles e Permissões
 
-- Autenticação
-- Autenticação com o Google
-- Reset de Senhas
+O template implementa duas roles básicas:
 
-#### Roles
+| Role | Descrição |
+|------|-----------|
+| `super_admin` | Acesso total ao painel administrativo AVO |
+| `normal` | Usuário padrão sem permissões administrativas |
 
-- No template temos duas roles:
-    - super_admin: que tem acesso no AVO
-    - normal: sem definição de acesso
-
-Essas roles inicialmente só tem a função de limitar o acesso no AVO, com certeza sua aplicação vai necessitar de mais
-roles e edite isso no arquivo `user.rb`
-
-### Background Jobs
-
-Para os background jobs utilizamos a gem "good_job"
+**Nota**: As roles atuais limitam o acesso ao AVO. Ajustes adicionais devem ser implementados no modelo `User` conforme as necessidades da aplicação.
