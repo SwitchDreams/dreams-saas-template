@@ -13,6 +13,7 @@ Este template fornece uma base sólida para o desenvolvimento de aplicações Sa
 - **Estilização**: Tailwind CSS
 - **Administração**: AVO
 - **Autenticação**: authentication-zero
+- **Autorização** action-policy
 - **Serialização**: Panko Serializer
 - **Jobs**: GoodJob
 - **Deploy**: Kamal
