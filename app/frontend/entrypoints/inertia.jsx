@@ -5,19 +5,17 @@ import { createRoot } from "react-dom/client";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 createInertiaApp({
+  layout: () => DefaultLayout,
   resolve: async (name) => {
     const pages = import.meta.glob(
       ["../pages/**/*.jsx", "!../pages/**/*.test.jsx", "!../pages/**/*.stories.jsx"],
       { eager: true },
     );
     let page = pages[`../pages/${name}.jsx`];
-
-    page.default.layout = (page) => <DefaultLayout>{page}</DefaultLayout>;
+    
     return page;
   },
   setup({ el, App, props }) {
-    const container = document.getElementById(el.id);
-    const root = createRoot(container);
-    root.render(<App {...props} />);
+    createRoot(el).render(<App {...props} />)
   },
 });
