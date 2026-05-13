@@ -2,11 +2,12 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import ViteRails from "vite-plugin-rails";
+import inertia from '@inertiajs/vite'
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   build: { sourcemap: false },
-  plugins: [ViteRails(), react(), tailwindcss()],
+  plugins: [ViteRails(), inertia(), react(), tailwindcss()],
   test: {
     environment: "jsdom",
     setupFiles: ["./test/setup.js"],

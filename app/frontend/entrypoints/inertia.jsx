@@ -2,10 +2,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
-
 createInertiaApp({
-  layout: () => DefaultLayout,
   resolve: async (name) => {
     const pages = import.meta.glob(
       ["../pages/**/*.jsx", "!../pages/**/*.test.jsx", "!../pages/**/*.stories.jsx"],
@@ -16,6 +13,6 @@ createInertiaApp({
     return page;
   },
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />)
+    createRoot(el).render(<App {...props} />);
   },
 });
