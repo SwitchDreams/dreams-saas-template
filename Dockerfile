@@ -12,11 +12,14 @@ WORKDIR /rails
 ENV RAILS_ENV=$RAILS_ENV \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development:test"
+    BUNDLE_WITHOUT="development:test" \
+    LD_PRELOAD="/usr/local/lib/libjemalloc.so"
 
 # Node Setup to install correct version of node
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips && \
+    ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
 
@@ -25,7 +28,6 @@ RUN bash nodesource_setup.sh
 RUN apt-get install --no-install-recommends -y nodejs && \
     npm install -g pnpm
 
-
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
@@ -33,16 +35,18 @@ FROM base AS build
 RUN apt-get install --no-install-recommends -y build-essential git libvips pkg-config libyaml-dev libpq-dev
 
 # Install application gems
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock vendor ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+    # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
+    bundle exec bootsnap precompile -j 1 --gemfile
 
 # Copy application code
 COPY . .
 
 # Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile app/ lib/
+# -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
+RUN bundle exec bootsnap precompile -j 1 app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
@@ -53,11 +57,11 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl postgresql-client libvips && \
+    apt-get install --no-install-recommends -y curl postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
-COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Entrypoint prepares the database.
