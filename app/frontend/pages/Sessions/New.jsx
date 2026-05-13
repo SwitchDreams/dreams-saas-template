@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { AlertContext } from "@/contexts/Alert";
 import { imagePath } from "@/utils";
 
-import GoogleSignButton from "../../components/signIn/GoogleSignButton";
+import GoogleSignButton from "@/components/SignIn/GoogleSignButton";
 
 const SessionNew = () => {
   const [showPassword, setShowPassword] = useState(false);
