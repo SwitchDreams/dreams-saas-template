@@ -1,5 +1,5 @@
 # Name of your application. Used to uniquely configure containers.
-service: sonicscript
+service: dreams_saas_template
 
 # Name of the container image.
 image: switchdreams/projects
