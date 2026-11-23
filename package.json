@@ -22,6 +22,7 @@
     "@vitejs/plugin-react": "^6.2.1",
     "autoprefixer": "^10.6.2",
     "eslint": "^10.14.0",
+    "eslint-plugin-tailwindcss": "^4.4.0",
     "jsdom": "^30.1.3",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
@@ -30,5 +31,13 @@
     "vite-plugin-rails": "^0.6.0",
     "vite-plugin-ruby": "^5.2.6",
     "vitest": "^5.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ],
+    "patchedDependencies": {
+      "@switchdreams/lint-config@0.1.1": "patches/@switchdreams__lint-config@0.1.1.patch"
+    }
   }
 }

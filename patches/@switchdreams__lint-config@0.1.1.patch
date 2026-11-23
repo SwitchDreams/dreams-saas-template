@@ -1,0 +1,13 @@
+diff --git a/index.mjs b/index.mjs
+index 13a7509e4a7ab4ed2f542fea95b0100969cd139b..fa6f824003c6b55d46177daca4c5b33a580c6562 100644
+--- a/index.mjs
++++ b/index.mjs
+@@ -2,7 +2,7 @@ import pluginTailwindcss from "eslint-plugin-tailwindcss";
+ import baseConfig from "./base.mjs";
+ 
+ const tailwindConfig = [
+-  ...pluginTailwindcss.configs["flat/recommended"],
++  ...[pluginTailwindcss.configs["flat/recommended"] ?? pluginTailwindcss.configs.recommended].flat(),
+   {
+     name: "tailwindcss/rules",
+     plugins: {
