@@ -25,24 +25,22 @@ const StepOne = () => {
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center">
-      <div className="absolute left-0 top-10 w-full">
+      <div className="absolute top-10 left-0 w-full">
         <ClickBack onClickBack={() => router.visit("/login")} />
       </div>
       <div className="relative flex size-full flex-col items-center px-4 md:px-28">
         <div className="flex h-4/5 w-full flex-col justify-center py-32 pb-28 md:w-1/3">
-          <p className="m-0 pt-5 text-center text-sm text-gray-600 md:pt-10">
-            Esqueceu sua senha?
-          </p>
+          <p className="m-0 pt-5 text-center text-sm text-gray-600 md:pt-10">Esqueceu sua senha?</p>
           <div className="flex justify-center gap-2">
-            <h1 className="m-0 flex-none pb-14 pt-4 text-center text-3xl text-gray-800">
+            <h1 className="m-0 flex-none pt-4 pb-14 text-center text-3xl text-gray-800">
               Qual é o seu
             </h1>
-            <h1 className="m-0 pb-14 pt-4 text-center text-3xl text-primary-500">
-              email?
-            </h1>
+            <h1 className="m-0 pt-4 pb-14 text-center text-3xl text-primary-500">email?</h1>
           </div>
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm text-gray-800">Email</label>
+            <label htmlFor="email" className="mb-1 block text-sm text-gray-800">
+              Email
+            </label>
             <input
               id="email"
               name="email"
