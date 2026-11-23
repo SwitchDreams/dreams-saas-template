@@ -9,7 +9,7 @@ createInertiaApp({
       { eager: true },
     );
     let page = pages[`../pages/${name}.jsx`];
-    
+
     return page;
   },
   setup({ el, App, props }) {

@@ -38,21 +38,15 @@ const StepTwo = ({ sid }) => {
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center">
-      <Link className="absolute left-0 top-10 w-full" href={`step_one`}>
+      <Link className="absolute top-10 left-0 w-full" href={`step_one`}>
         <ClickBack />
       </Link>
       <div className="relative flex size-full flex-col items-center justify-center px-4 md:px-28">
         <div className="flex h-4/5 w-full flex-col justify-center pb-28 md:w-1/3">
-          <p className="m-0 pt-5 text-center text-sm text-gray-600 md:pt-10">
-            Esqueceu sua senha?
-          </p>
+          <p className="m-0 pt-5 text-center text-sm text-gray-600 md:pt-10">Esqueceu sua senha?</p>
           <div className="flex justify-center gap-2">
-            <h1 className="m-0 flex-none pb-8 pt-4 text-center text-3xl text-gray-800">
-              Insira o
-            </h1>
-            <h1 className="m-0 pt-4 text-center text-3xl text-primary-500">
-              código
-            </h1>
+            <h1 className="m-0 flex-none pt-4 pb-8 text-center text-3xl text-gray-800">Insira o</h1>
+            <h1 className="m-0 pt-4 text-center text-3xl text-primary-500">código</h1>
           </div>
           <div className="flex h-auto w-full justify-between md:justify-center md:gap-3.5">
             {[...Array(6)].map((_, index) => (

@@ -25,7 +25,7 @@ Este template fornece uma base sólida para o desenvolvimento de aplicações Sa
 Certifique-se de ter as seguintes ferramentas instaladas:
 
 - Ruby
-- Node.js e pnpm
+- Node.js **>= 22** e pnpm
 - PostgreSQL (ou outro banco de dados compatível)
 
 ### Instalação

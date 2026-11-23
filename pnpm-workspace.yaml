@@ -1,0 +1,2 @@
+overrides:
+  eslint-plugin-tailwindcss: ^4.4.0

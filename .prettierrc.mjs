@@ -3,7 +3,8 @@ import switchDreamsConfig from "@switchdreams/lint-config/prettier";
 
 const config = {
   ...switchDreamsConfig,
-  // ...your overrides
+  plugins: ["prettier-plugin-tailwindcss"],
+  tailwindStylesheet: "./app/frontend/entrypoints/application.css",
 };
 
 export default config;

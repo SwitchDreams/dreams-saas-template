@@ -2,10 +2,9 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { Link, useForm } from "@inertiajs/react";
 import React, { useContext, useState } from "react";
 
+import GoogleSignButton from "@/components/SignIn/GoogleSignButton";
 import { AlertContext } from "@/contexts/Alert";
 import { imagePath } from "@/utils";
-
-import GoogleSignButton from "@/components/SignIn/GoogleSignButton";
 
 const SessionNew = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,15 +32,15 @@ const SessionNew = () => {
         <div className="relative flex h-full w-screen items-center justify-center md:w-1/2">
           <div className="flex h-4/5 w-full flex-col justify-center px-6 md:w-auto md:p-0">
             <img className="h-[43px] w-[170px]" src={imagePath("logo.svg")} alt="logo" />
-            <h2 className="m-0 pt-5 text-sm text-gray-600 md:pt-10">
-              SEJA BEM-VINDO DE VOLTA
-            </h2>
-            <h1 className="m-0 pb-14 pt-4 text-3xl text-gray-950">
+            <h2 className="m-0 pt-5 text-sm text-gray-600 md:pt-10">SEJA BEM-VINDO DE VOLTA</h2>
+            <h1 className="m-0 pt-4 pb-14 text-3xl text-gray-950">
               Entre na sua conta Dream SaaS Template
             </h1>
             <form onSubmit={submitLoginData}>
               <div className="mb-5">
-                <label htmlFor="email" className="mb-1 block text-sm text-gray-800">E-mail</label>
+                <label htmlFor="email" className="mb-1 block text-sm text-gray-800">
+                  E-mail
+                </label>
                 <input
                   id="email"
                   name="email"
@@ -52,7 +51,9 @@ const SessionNew = () => {
                 />
               </div>
               <div className="relative">
-                <label htmlFor="password" className="mb-1 block text-sm text-gray-800">Senha</label>
+                <label htmlFor="password" className="mb-1 block text-sm text-gray-800">
+                  Senha
+                </label>
                 <input
                   id="password"
                   name="password"
@@ -64,9 +65,13 @@ const SessionNew = () => {
                 <button
                   type="button"
                   onClick={showPasswordIcon}
-                  className="absolute right-3 top-[2.1rem] text-gray-500 focus:outline-none"
+                  className="absolute top-[2.1rem] right-3 text-gray-500 focus:outline-none"
                 >
-                  {showPassword ? <EyeIcon className="h-5 w-5" /> : <EyeSlashIcon className="h-5 w-5" />}
+                  {showPassword ? (
+                    <EyeIcon className="size-5" />
+                  ) : (
+                    <EyeSlashIcon className="size-5" />
+                  )}
                 </button>
               </div>
               <Link href="/identity/password_resets/step_one">

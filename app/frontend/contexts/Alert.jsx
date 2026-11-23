@@ -47,12 +47,16 @@ export const AlertProvider = ({ children }) => {
 
   const { errors } = usePage().props;
 
-  useEffect(() => {
-    if (errors) {
-      const errorMessage = typeof errors === "string" ? errors : Object.values(errors)[0];
+  // Derive the alert from page errors during render instead of an effect,
+  // per https://react.dev/learn/you-might-not-need-an-effect
+  const [prevErrors, setPrevErrors] = useState(errors);
+  if (errors !== prevErrors) {
+    setPrevErrors(errors);
+    const errorMessage = typeof errors === "string" ? errors : Object.values(errors)[0];
+    if (errorMessage) {
       showAlert({ message: errorMessage });
     }
-  }, [errors]);
+  }
 
   return (
     <AlertContext.Provider
@@ -69,7 +73,7 @@ export const AlertProvider = ({ children }) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="fixed right-4 top-4 z-50">
+        <div className="fixed top-4 right-4 z-50">
           <div
             className={`flex items-center gap-3 rounded-lg border p-4 shadow-lg ${
               content.type === "error"
@@ -89,8 +93,13 @@ export const AlertProvider = ({ children }) => {
               onClick={() => setIsOpen(false)}
               className="text-current opacity-70 hover:opacity-100"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>

@@ -3,7 +3,7 @@ import React from "react";
 
 const ClickBack = ({ onClickBack }) => {
   return (
-    <div className="absolute left-[5%] top-24 z-20 md:left-28 md:top-32 md:block">
+    <div className="absolute top-24 left-[5%] z-20 md:top-32 md:left-28 md:block">
       <div
         onClick={onClickBack}
         className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-primary-50 hover:border-primary-200 hover:bg-primary-25"
